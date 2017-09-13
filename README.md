@@ -10,6 +10,8 @@ $dbusername = 'root'; //Database Username
 
 $dbpass = '123456'; //Database Password
 
+Так же необходимо импортировать БД из папки /database/
+
 2) Facebook API: -> Настройка Facebook приложения в файле facebookcfg.php :
 
 define('FB_ID', '130035117626009'); //Id Приложения в Facebook
