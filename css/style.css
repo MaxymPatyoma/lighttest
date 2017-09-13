@@ -1,0 +1,19 @@
+#error404{
+
+	color: #6e7e88;
+
+	padding-top: 15%;	
+}
+
+/*Добавляем перенос слов*/
+
+div {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  line-break: auto;
+ -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto;
+
+}
+
+
