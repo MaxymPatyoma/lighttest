@@ -120,7 +120,7 @@ class modelWall extends Model
 		$this-> getredbeans();
 
 			//Получаем все сообщения и сортируем
-		$messages = R::find('messages', 'mess_lvl = 0  ORDER BY mess_time DESC');
+		$messages = R::find('messages', 'ownComment_id IS NULL ORDER BY mess_time DESC');
 
 		foreach ($messages as &$mess) {
 
