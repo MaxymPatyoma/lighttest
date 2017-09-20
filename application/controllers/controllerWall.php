@@ -79,9 +79,10 @@ class controllerWall extends Controller
 
 					//Подключаем конфиг для получения переменной $max_comments_nesting  
 					//Для регулирования вложенности сообщений
-					require_once '/../config/applicationcfg.php';
+					require_once __DIR__.'/../config/applicationcfg.php';
 					//Задаём ограничение на вложенность
-					if($_POST['comment_id']!='' &&$mess_lvl<=$max_comments_nesting){
+
+					if($_POST['comment_id']!='' && MAX_COMM_NEST>$mess_lvl){
 						// +1 для комментария
 						$mess_lvl++;
 					}

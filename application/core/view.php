@@ -12,6 +12,6 @@ class View
 		}
 		
 		
-		include 'application/views/'.$templateView;
+		include_once __DIR__.'/../views/'.$templateView;
 	}
 }

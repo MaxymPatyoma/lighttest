@@ -36,7 +36,7 @@
 </nav>
 
 <!-- Подгрузка Вьюшек -->
-	<?php include 'application/views/'.$contentView; ?>
+	<?php include_once __DIR__.'/'.$contentView; ?>
 
 
 

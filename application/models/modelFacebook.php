@@ -187,7 +187,7 @@ return $data;
   //Получаем логин линку
     function oldgetloginlink(){
 
-      require_once '/../config/facebookcfg.php';
+      require_once __DIR__.'/../config/facebookcfg.php';
 
        $loginlink = 'https://www.facebook.com/'.FB_DGV.'/dialog/oauth?client_id='.FB_ID.'&redirect_uri='.FB_URL.'&response_type=code&scope=public_profile,email';
 
@@ -200,7 +200,7 @@ return $data;
     //Получаем данные юзера
     function oldGetUser($code){
 
-      require_once '/../config/facebookcfg.php';
+      require_once __DIR__.'/../config/facebookcfg.php';
 
       if (!$code) {
         exit('error code');

@@ -21,6 +21,13 @@
   }
  ?>
 
+<pre>
+<?php 
+//print_r($data); 
+?>
+</pre>
+
+
 <!-- Вывод сообщений  -->
 <div class="container" style="padding-bottom:50px">
     <div class="row">
@@ -41,13 +48,8 @@
 <?php  
 
         function drawMessages($messArray){
-          //Проверка на уникальность сообщения во избежания дублей
-           //$GLOBALS['chechArray'] = array();
-          foreach ($messArray as $message) {
-           
+          foreach ($messArray as $message) {       
             if($message['id']!=''): 
-              //&& in_array($message['id'] , $GLOBALS['chechArray'])==FALSE
-              //$GLOBALS['chechArray']=$message['id'];
 
               ?>
 <!--  Start print head -->
@@ -105,10 +107,6 @@
  <?php function drawCommentary($commArray){
   foreach ($commArray as $comment) {
     if($comment['id']!=''): 
-      //Проверка на уникальность сообщения во избежания дублей
-      //&& in_array($comment['id'])==TRUE
-     //$GLOBALS['chechArray']=$comment['id'];
-
       ?>
       
 <!--  Start print comments -->

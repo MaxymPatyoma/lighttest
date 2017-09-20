@@ -6,7 +6,7 @@ class Route
 	{
 		session_start();
 		// Подключаем конфиг
-		require_once ('/../config/applicationcfg.php');
+		require_once __DIR__.'/../config/applicationcfg.php';
 
 
 		// Контроллер и действие по умолчанию
@@ -38,18 +38,18 @@ class Route
 		// Подцепляем файл с классом модели (файла модели может и не быть)
 
 		$model_file = strtolower($model_name).'.php';
-		$model_path = "application/models/".$model_file;
+		$model_path = __DIR__.'/../models/'.$model_file;
 		if(file_exists($model_path))
 		{
-			include "application/models/".$model_file;
+			include_once  __DIR__.'/../models/'.$model_file;
 		}
 
 		// Подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name).'.php';
-		$controller_path = "application/controllers/".$controller_file;
+		$controller_path = __DIR__.'/../controllers/'.$controller_file;
 		if(file_exists($controller_path))
 		{
-			include "application/controllers/".$controller_file;
+			include_once  __DIR__.'/../controllers/'.$controller_file;
 		}  else {
 			//Делаем редирект на страницу 404
 			

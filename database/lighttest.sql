@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 13, 2017 at 08:50 AM
+-- Generation Time: Sep 20, 2017 at 05:06 AM
 -- Server version: 5.5.53
 -- PHP Version: 5.6.29
 
@@ -41,8 +41,8 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `message`, `mess_time`, `mess_lvl`, `ownUsers_id`, `ownComment_id`, `mess_edited_time`) VALUES
-(1, 'Test Message', '2017-09-13 08:42:51', 0, 1, NULL, NULL),
-(2, 'Test Commentary Edited twise', '2017-09-13 08:42:59', 0, 1, 1, '2017-09-13 08:44:27');
+(5, 'First Message', '2017-09-20 04:31:23', 0, 2, NULL, NULL),
+(6, 'Comm on First', '2017-09-20 04:31:31', 1, 2, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `users`
 --
