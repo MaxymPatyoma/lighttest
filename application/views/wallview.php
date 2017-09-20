@@ -21,13 +21,6 @@
   }
  ?>
 
-<pre>
-<?php 
-//print_r($data); 
-?>
-</pre>
-
-
 <!-- Вывод сообщений  -->
 <div class="container" style="padding-bottom:50px">
     <div class="row">
@@ -93,11 +86,12 @@
               <button type="submit" class="btn btn-link" name="edit">Edit</button>
             </form>
           </div>
+      </div>
             <!--  Get commentaries -->       
           <?php if($message['parrents']) $checkFromComm = drawCommentary($message['parrents']); ?>
-   </div> 
+    
           <?php else: if($message['parrents']){ $checkFromComm = drawCommentary($message['parrents'])  ;}?>    
-   </div> <?php endif; endif; 
+         <?php endif; endif; 
 
 }}?>
 
@@ -109,10 +103,11 @@
     if($comment['id']!=''): 
       ?>
       
+
 <!--  Start print comments -->
 <!--  Start print head -->
-<!-- col-md-offset-1 В след блок -->
-<div class="row img-rounded" style="padding: 5px; background-color: #222; opacity:.9">
+<!-- col-md-offset-<?php echo $comment['mess_lvl']; ?> В след блок -->
+<div class="row img-rounded col-md-offset-<?php echo $comment['mess_lvl']; ?>" style="padding: 5px; background-color: #222; opacity:.9">
   <div class="col-md-1">
     <img src=<?php echo '"'.$comment['image'].'"'; ?> class="img-responsive img-circle" alt="Responsive image">
   </div>
@@ -132,7 +127,7 @@
 </div> <?php endif; ?>
        <!--  End Print Head -->
           <!--  Start print form with message -->
-           <div class="row img-rounded" style="background-color: #333">
+           <div class="row img-rounded row img-rounded col-md-offset-<?php echo $comment['mess_lvl']; ?>" style="background-color: #333">
            <h5 class="text-warning" style="padding: 0 10px;"><?php echo nl2br($comment['message']) ?>
            </h5>           
              <!--  Start print buttons -->
@@ -152,11 +147,13 @@
                 <button type="submit" class="btn btn-link" name="edit">Edit</button>
               </form>
             </div>
+
+          </div> 
             <!--  Get commentaries --> 
         <?php if($comment['parrents']){drawCommentary($comment['parrents']);} ?>
-        </div> 
+        
             <?php else: if($comment['parrents']){drawCommentary($comment['parrents']);} ?>
-        </div><?php endif; endif; 
+        <?php endif; endif; 
 
 }}?>
 
