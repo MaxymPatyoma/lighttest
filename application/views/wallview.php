@@ -22,10 +22,9 @@
  ?>
 
 <!-- Вывод сообщений  -->
-<div class="container" style="padding-bottom:50px">
-    <div class="row">
-      <div class="col-md-12 img-rounded" style="background-color: #222; opacity:.9">
-            
+<div class="container" style="padding-bottom:50px">  
+
+     
                 <?php if(empty($data)): ; ?> 
                 <h4 class="text-info" style="padding-left: 15px;">There are no messages yet! </h4>
                 <?php endif; ?>
@@ -33,47 +32,54 @@
 
 <?php  drawMessages($data); ?>
 
-      </div>
-    </div>
+
 </div>
 
 
 <?php  
-
         function drawMessages($messArray){
           foreach ($messArray as $message) {       
-            if($message['id']!=''): 
+            if($message['id']!=''):  
+?>
 
-              ?>
-<!--  Start print head -->
-<div class="row img-rounded" style="padding: 5px; background-color: #222; opacity:.9">
-  <div class="col-md-1">
+<div class="row" >
+<div class="col-md-12 img-rounded" style="background-color: #333; opacity:.9; margin-bottom: 5px; padding: 5px;">
+    <!--  User Info -->
+  <div class="row">
+  <div class="col-md-3 img-rounded" style="background-color: #222">
+    <!--  Photo + Name -->
+    <div class="row">
+      <div class="col-md-3" style="padding-top: 5px;">
     <img src=<?php echo '"'.$message['image'].'"'; ?> class="img-responsive img-circle" alt="Responsive image">
-  </div>
-    <div class="col-md-5">
-      <h4 class="text-info"> <?php echo $message['name']; ?> </h4>
+      </div>
+      <div class="col-md-9">
+           <h5 class="text-info"> <?php echo $message['name']; ?> </h5>
+      </div>
     </div>
-      <div class="col-md-3">
+    <!--  Posted / Edited Time -->
+    <div class="row" style="padding-left: 5px;">
         <p class="text-warning">Posted <?php echo $message['mess_time']; ?></p>
-     </div>
+      
       <?php if($message['mess_edited_time']!=''): ?> 
-      <div class="col-md-3">
         <p class="text-warning">Edited <?php echo $message['mess_edited_time']; ?>
         </p>
-      </div>
-</div> <?php else: ?>  
-</div> <?php endif; ?>
+      <?php endif; ?>
+    </div>
+  </div>
+     <!--  End User Info -->
 
-<!--  End Print Head -->
-  <!--  Start print form with message -->
-   <div class="row img-rounded" style="background-color: #333">
-    <h5 class="text-warning" style="padding: 0 10px;"><?php echo nl2br($message['message']); ?>
-    </h5>
-      <!--  Start print buttons -->
-      <!--  Commentary button -->
-        <div class="col-md-3">
+     <!--  Message -->
+  <div class="col-md-9">
+    <div class="row">
+      <h5 class="text-warning" style="padding: 0 10px;"><?php echo nl2br($message['message']); ?>
+      </h5>
+    </div>
+      <!--  Start print buttons -->     
+    <div class="row">
+        <!--  Commentary button -->
+      <div class="col-md-3">
           <form action="/wall" method="POST">
-            <input type="hidden" name="commentval" value=<?php echo '"'.$message['id'].':'.$message['mess_lvl'].'"'; ?>>
+            <input type="hidden" name="commentval" value=<?php echo '"'.$message['id'].':'.$message['mess_lvl'].'"'; ?> >
             <button type="submit" class="btn btn-link" name="comment">Commentary</button>
           </form>
         </div>
@@ -86,14 +92,15 @@
               <button type="submit" class="btn btn-link" name="edit">Edit</button>
             </form>
           </div>
+        <?php endif; ?>
       </div>
-            <!--  Get commentaries -->       
-          <?php if($message['parrents']) $checkFromComm = drawCommentary($message['parrents']); ?>
-    
-          <?php else: if($message['parrents']){ $checkFromComm = drawCommentary($message['parrents'])  ;}?>    
-         <?php endif; endif; 
+    </div>
+</div>
+    <!--  Get commentaries --> 
+      <?php if($message['parrents']){drawCommentary($message['parrents']);} ?>
+     </div>  </div>
+  <?php endif; }}?>
 
-}}?>
 
 
 
@@ -103,59 +110,64 @@
     if($comment['id']!=''): 
       ?>
       
-
-<!--  Start print comments -->
-<!--  Start print head -->
-<!-- col-md-offset-<?php echo $comment['mess_lvl']; ?> В след блок -->
-<div class="row img-rounded col-md-offset-<?php echo $comment['mess_lvl']; ?>" style="padding: 5px; background-color: #222; opacity:.9">
-  <div class="col-md-1">
+<div class="row" style="padding-left: <?php if($comment['mess_lvl']<MAX_COMM_NEST){echo 12*$comment['mess_lvl'];} else {echo 13;}?>px">
+<div class="col-md-12 img-rounded" style="background-color: #3d3d3d; opacity:.9; margin-bottom: 5px; padding: 5px;">
+    <!--  User Info -->
+  <div class="row">
+  <div class="col-md-3 img-rounded" style="background-color: #222">
+    <!--  Photo + Name -->
+    <div class="row">
+      <div class="col-md-3" style="padding-top: 5px;">
     <img src=<?php echo '"'.$comment['image'].'"'; ?> class="img-responsive img-circle" alt="Responsive image">
-  </div>
-    <div class="col-md-5">
-      <h4 class="text-info"><?php echo $comment['name']; ?></h4>
-    </div>
-      <div class="col-md-3">
-        <p class="text-warning">Posted <?php echo $comment['mess_time']; ?>
-        </p>
       </div>
-        <?php if($comment['mess_edited_time']!=''): ?> 
-        <div class="col-md-3">
-           <p class="text-warning">Edited <?php echo $comment['mess_edited_time'];  ?>
-           </p>
+      <div class="col-md-9">
+           <h5 class="text-info"> <?php echo $comment['name']; ?> </h5>
+      </div>
+    </div>
+    <!--  Posted / Edited Time -->
+    <div class="row" style="padding-left: 5px;">
+        <p class="text-warning">Posted <?php echo $comment['mess_time']; ?></p>
+      
+      <?php if($comment['mess_edited_time']!=''): ?> 
+        <p class="text-warning">Edited <?php echo $comment['mess_edited_time']; ?>
+        </p>
+      <?php endif; ?>
+    </div>
+  </div>
+     <!--  End User Info -->
+
+     <!--  Message -->
+  <div class="col-md-9">
+    <div class="row">
+      <h5 class="text-warning" style="padding: 0 10px;"><?php echo nl2br($comment['message']); ?>
+      </h5>
+    </div>
+      <!--  Start print buttons -->     
+    <div class="row">
+        <!--  Commentary button -->
+      <div class="col-md-3">
+          <form action="/wall" method="POST">
+            <input type="hidden" name="commentval" value=<?php echo '"'.$comment['id'].':'.$comment['mess_lvl'].'"'; ?> >
+            <button type="submit" class="btn btn-link" name="comment">Commentary</button>
+          </form>
         </div>
-</div> <?php else: ?>
-</div> <?php endif; ?>
-       <!--  End Print Head -->
-          <!--  Start print form with message -->
-           <div class="row img-rounded row img-rounded col-md-offset-<?php echo $comment['mess_lvl']; ?>" style="background-color: #333">
-           <h5 class="text-warning" style="padding: 0 10px;"><?php echo nl2br($comment['message']) ?>
-           </h5>           
-             <!--  Start print buttons -->
-              <!--  Commentary button -->
-          <div class="col-md-3">
-              <form action="/wall" method="POST">
-                <input type="hidden" name="commentval" value=<?php echo '"'.$comment['id'].':'.$comment['mess_lvl'].'"'; ?>>
-                <button type="submit" class="btn btn-link" name="comment">Commentary</button>
-              </form>
+      <!--  Edit button -->
+        <?php if($comment['user_fbid']==$_SESSION['fb_user']['fb_id']): ?>
+         <div class="col-md-3 col-md-offset-6">
+            <form action="/wall" method="POST">
+              <input type="hidden" name="editval" value=<?php echo '"'.$comment['id'].':'.$comment['user_id'].'"'; ?>>
+              <input type="hidden" name="editmess" value=<?php echo '"'.$comment['message'].'"'; ?>>
+              <button type="submit" class="btn btn-link" name="edit">Edit</button>
+            </form>
           </div>
-           <!--  Edit button -->
-           <?php if($comment['user_fbid']==$_SESSION['fb_user']['fb_id']): ?>
-            <div class="col-md-3 col-md-offset-6">
-              <form action="/wall" method="POST">
-                <input type="hidden" name="editval" value=<?php echo '"'.$comment['id'].':'.$comment['user_id'].'"'; ?>>
-                <input type="hidden" name="editmess" value=<?php echo '"'.$comment['message'].'"'; ?>>
-                <button type="submit" class="btn btn-link" name="edit">Edit</button>
-              </form>
-            </div>
-
-          </div> 
-            <!--  Get commentaries --> 
-        <?php if($comment['parrents']){drawCommentary($comment['parrents']);} ?>
-        
-            <?php else: if($comment['parrents']){drawCommentary($comment['parrents']);} ?>
-        <?php endif; endif; 
-
-}}?>
+        <?php endif; ?>
+      </div>
+    </div>
+</div>
+    <!--  Get commentaries --> 
+      <?php if($comment['parrents']){drawCommentary($comment['parrents']);} ?>
+     </div>  </div>
+  <?php endif; }}?>
 
 
 <!-- Иконки  -->
