@@ -82,7 +82,7 @@ class controllerWall extends Controller
 					require_once __DIR__.'/../config/applicationcfg.php';
 					//Задаём ограничение на вложенность
 
-					if($_POST['comment_id']!='' && MAX_COMM_NEST>$mess_lvl){
+					if($_POST['comment_id']!=''){
 						// +1 для комментария
 						$mess_lvl++;
 					}

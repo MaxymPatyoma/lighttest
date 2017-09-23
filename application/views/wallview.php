@@ -21,8 +21,9 @@
   }
  ?>
 
+
 <!-- Вывод сообщений  -->
-<div class="container" style="padding-bottom:50px">  
+<div class="container" style="padding-bottom: 50px;">  
 
      
                 <?php if(empty($data)): ; ?> 
@@ -85,7 +86,7 @@
         </div>
       <!--  Edit button -->
         <?php if($message['user_fbid']==$_SESSION['fb_user']['fb_id']): ?>
-         <div class="col-md-3 col-md-offset-6">
+         <div class="col-md-3 col-md-offset-3">
             <form action="/wall" method="POST">
               <input type="hidden" name="editval" value=<?php echo '"'.$message['id'].':'.$message['user_id'].'"'; ?>>
               <input type="hidden" name="editmess" value=<?php echo '"'.$message['message'].'"'; ?>>
@@ -110,7 +111,7 @@
     if($comment['id']!=''): 
       ?>
       
-<div class="row" style="padding-left: <?php if($comment['mess_lvl']<MAX_COMM_NEST){echo 12*$comment['mess_lvl'];} else {echo 13;}?>px">
+<div class="row" style="overflow: hidden; padding-left: <?php if($comment['mess_lvl']<MAX_COMM_NEST){echo COMMENT_OFFSET*$comment['mess_lvl'];} else {echo COMMENT_OFFSET_AFTER_MAX_NEST;}?>px;">
 <div class="col-md-12 img-rounded" style="background-color: #3d3d3d; opacity:.9; margin-bottom: 5px; padding: 5px;">
     <!--  User Info -->
   <div class="row">
@@ -137,7 +138,7 @@
      <!--  End User Info -->
 
      <!--  Message -->
-  <div class="col-md-9">
+  <div class="col-md-6">
     <div class="row">
       <h5 class="text-warning" style="padding: 0 10px;"><?php echo nl2br($comment['message']); ?>
       </h5>
@@ -153,7 +154,7 @@
         </div>
       <!--  Edit button -->
         <?php if($comment['user_fbid']==$_SESSION['fb_user']['fb_id']): ?>
-         <div class="col-md-3 col-md-offset-6">
+         <div class="col-md-3 col-md-offset-3">
             <form action="/wall" method="POST">
               <input type="hidden" name="editval" value=<?php echo '"'.$comment['id'].':'.$comment['user_id'].'"'; ?>>
               <input type="hidden" name="editmess" value=<?php echo '"'.$comment['message'].'"'; ?>>
