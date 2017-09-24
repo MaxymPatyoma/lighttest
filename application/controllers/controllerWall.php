@@ -1,6 +1,6 @@
 <?php
 
-class controllerWall extends Controller
+class controllerwall extends Controller
 {
 
 	function __construct(){
@@ -34,7 +34,7 @@ class controllerWall extends Controller
 
 
 
-		$this->view->generate('wallView.php', 'templateView.php', $data);
+		$this->view->generate('wallview.php', 'templateview.php', $data);
 	}
 
 	function actionMess(){
@@ -79,7 +79,7 @@ class controllerWall extends Controller
 
 					//Подключаем конфиг для получения переменной $max_comments_nesting  
 					//Для регулирования вложенности сообщений
-					require_once __DIR__.'/../config/applicationcfg.php';
+					require_once $_SERVER['DOCUMENT_ROOT'].'/application/config/applicationcfg.php';
 					//Задаём ограничение на вложенность
 
 					if($_POST['comment_id']!=''){
@@ -111,6 +111,6 @@ class controllerWall extends Controller
 			}
 
 
-			$this->view->generate('wallView.php', 'templateView.php', $data);
+			$this->view->generate('wallview.php', 'templateview.php', $data);
 	}	
 }

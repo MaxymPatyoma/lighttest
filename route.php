@@ -6,7 +6,7 @@ class Route
 	{
 		session_start();
 		// Подключаем конфиг
-		require_once $_SERVER['DOCUMENT_ROOT'].'/application/config/applicationcfg.php';
+		require_once realpath(dirname(__DIR__).'/config/applicationcfg.php');
 
 
 		// Контроллер и действие по умолчанию
@@ -38,25 +38,25 @@ class Route
 		// Подцепляем файл с классом модели (файла модели может и не быть)
 
 		$model_file = strtolower($model_name).'.php';
-		$model_path = $_SERVER['DOCUMENT_ROOT'].'/application/models/'.$model_file;
+		$model_path = realpath(dirname(__DIR__).'/models/'.$model_file);
 		if(file_exists($model_path))
 		{
-			include_once  $_SERVER['DOCUMENT_ROOT'].'/application/models/'.$model_file;
+			include_once  realpath(dirname(__DIR__).'/models/'.$model_file);
 		}
 
 		// Подцепляем файл с классом контроллера
 		$controller_file = strtolower($controller_name).'.php';
-		$controller_path = $_SERVER['DOCUMENT_ROOT'].'/application/controllers/'.$controller_file;
+		$controller_path = realpath(dirname(__DIR__).'/controllers/'.$controller_file);
 		if(file_exists($controller_path))
 		{
-			include_once  $_SERVER['DOCUMENT_ROOT'].'/application/controllers/'.$controller_file;
-
+			include_once  realpath(dirname(__DIR__).'/controllers/'.$controller_file);
 		}  else {
 			//Делаем редирект на страницу 404
 			
-			Route::ErrorPage404();
+			//Route::ErrorPage404();
 		}
 		
+		echo realpath(dirname(__DIR__).'/controllers/'.$controller_file);
 		// Создаем контроллер
 		$controller = new $controller_name;
 
@@ -71,7 +71,7 @@ class Route
 			$controller->$action();
 		} else {
 			//Делаем редирект на страницу 404
-			Route::ErrorPage404();
+			//Route::ErrorPage404();
 		}
 	
 	}

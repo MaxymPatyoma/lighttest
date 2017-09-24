@@ -1,6 +1,6 @@
 <?php
 
-class modelWall extends Model
+class modelwall extends Model
 {
 	//Добавляем сообщение / комментарий
 	function addMess($message){

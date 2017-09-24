@@ -1,6 +1,6 @@
 <?php
 
-class controllerFacebook extends Controller
+class controllerfacebook extends Controller
 {
 	function __construct(){
 
@@ -15,7 +15,7 @@ class controllerFacebook extends Controller
 		$data = $this->model->fbgetloginlink();
 
 		//Выводим URL
-		$this->view->generate('facebookView.php', 'templateView.php', $data);
+		$this->view->generate('facebookview.php', 'templateview.php', $data);
 	}
 
 
@@ -45,7 +45,7 @@ class controllerFacebook extends Controller
 			//задаём редирект пользователя
 			$data['redirect']='/wall';
 
-			$this->view->generate('facebookView.php', 'templateView.php', $data);
+			$this->view->generate('facebookview.php', 'templateview.php', $data);
 
 
 	}
@@ -57,7 +57,7 @@ class controllerFacebook extends Controller
 		
 		//задаём редирект пользователя
 		$data['redirect']='/facebook';
-		$this->view->generate('facebookView.php', 'templateView.php', $data);
+		$this->view->generate('facebookview.php', 'templateview.php', $data);
 
 	}
 

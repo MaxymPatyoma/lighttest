@@ -2,7 +2,10 @@
 <div class="container">
 <div class="row">
 <div class="col-md-2">
-<a class="btn btn-primary btn-lg" href=<?php echo ($_SESSION['fb_user'])? "/facebook/logout" : '"'.$data['loginurl'].'"'; ?>> <i class="fa fa-facebook"></i> |  <?php echo ($_SESSION['fb_user'])? 'Log out!' : 'Log in with Facebook!'; ?></a>
+<a class="btn btn-primary btn-lg" 
+href=<?php if(isset($_SESSION['fb_user'])){ echo "/facebook/logout"; } else { if(isset($data['loginurl'])){ echo $data['loginurl'];} else {echo '';} } ?>> 
+<i class="fa fa-facebook"></i> |  <?php echo (isset($_SESSION['fb_user']))? 'Log out!' : 'Log in with Facebook!'; ?>
+</a>
 </div>
 </div>
 </div>
@@ -10,7 +13,7 @@
 
 <!-- Редирект  -->
 <?php 
-	if($data['redirect']!=''){
+	if(isset($data['redirect'])){
 		echo '<script>window.location.replace("'.$data['redirect'].'")</script>';
 	}?>
 

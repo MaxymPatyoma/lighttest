@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +20,9 @@
 
   			<li class=" <?php if ($_SERVER["REQUEST_URI"]=='/facebook') echo 'active' ?> ">
 
-        <a href="/facebook"> <?php echo ($_SESSION['fb_user'])?'Logout' : 'Login'; ?> </a>
+        <a href="/facebook"> <?php echo (isset($_SESSION['fb_user']))?'Logout' : 'Login'; ?> </a>
         <p class="navbar-text">
-        <?php echo (($_SESSION['fb_user'])? 'Signed in as '.$_SESSION['fb_user']['name'] : 'Sign in to send messages' ); ?>
+        <?php echo (isset($_SESSION['fb_user']))? 'Signed in as '.$_SESSION['fb_user']['name'] : 'Sign in to send messages'; ?>
         </p>
 
         </li>
@@ -36,7 +35,7 @@
 </nav>
 
 <!-- Подгрузка Вьюшек -->
-	<?php include_once __DIR__.'/'.$contentView; ?>
+	<?php include_once $_SERVER['DOCUMENT_ROOT'].'/application/views/'.$contentView; ?>
 
 
 

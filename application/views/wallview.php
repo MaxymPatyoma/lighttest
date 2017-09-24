@@ -1,22 +1,22 @@
 <!-- Форма  -->
 <div class="container">
 	<div class="row">
-<form role="form" method="POST" action=<?php echo ($_SESSION['fb_user'])? "/wall/mess" : "/facebook"; ?>>
+<form role="form" method="POST" action=<?php echo (isset($_SESSION['fb_user']))? "/wall/mess" : "/facebook"; ?>>
   <div class="form-group col-md-10">
-	  <textarea name="usermess"  class="form-control <?php echo ($_SESSION['fb_user'])? "" : "hidden"; ?>" rows="3" style="resize:none" autofocus placeholder="Enter a new message"><?php if($_POST['editval']!=''){echo $_POST['editmess'];} ?></textarea>
-    <?php if($_POST['editval']!=''){echo '<input type="hidden" value="'.$_POST['editval'].'" name="edit_id">';} ?>
-    <?php if($_POST['commentval']!=''){echo '<input type="hidden" value="'.$_POST['commentval'].'" name="comment_id">';} ?>
-	  <textarea class="form-control <?php echo ($_SESSION['fb_user'])? "hidden" : ""; ?>" rows="2" style="resize:none" disabled placeholder="You can`t send messages until you log in"></textarea>
+	  <textarea name="usermess"  class="form-control <?php echo (isset($_SESSION['fb_user']))? "" : "hidden"; ?>" rows="3" style="resize:none" autofocus placeholder="Enter a new message"><?php if(isset($_POST['editval'])){echo $_POST['editmess'];} ?></textarea>
+    <?php if(isset($_POST['editval'])){echo '<input type="hidden" value="'.$_POST['editval'].'" name="edit_id">';} ?>
+    <?php if(isset($_POST['commentval'])){echo '<input type="hidden" value="'.$_POST['commentval'].'" name="comment_id">';} ?>
+	  <textarea class="form-control <?php echo (isset($_SESSION['fb_user']))? "hidden" : ""; ?>" rows="2" style="resize:none" disabled placeholder="You can`t send messages until you log in"></textarea>
   </div>
-  <button type="submit" class="btn btn-primary <?php echo ($_SESSION['fb_user'])? "" : "hidden"; ?>"> <?php if($_POST['editval']){echo 'Edit Message'; }elseif($_POST['commentval']){echo 'Send Commentary';} else{ echo 'Send Message'; } ?> </button>
-  <button type="submit" class="btn btn-primary <?php echo ($_SESSION['fb_user'])? "hidden" : ""; ?>">Log in</button>
+  <button type="submit" class="btn btn-primary <?php echo (isset($_SESSION['fb_user']))? "" : "hidden"; ?>"> <?php if(isset($_POST['editval'])){echo 'Edit Message'; }elseif(isset($_POST['commentval'])){echo 'Send Commentary';} else{ echo 'Send Message'; } ?> </button>
+  <button type="submit" class="btn btn-primary <?php echo (isset($_SESSION['fb_user']))? "hidden" : ""; ?>">Log in</button>
 </form>
   </div>
 </div>
 
 <!-- Редирект  -->
 <?php 
-  if($data['redirect']!=''){
+  if(isset($data['redirect'])){
     echo '<script>window.location.replace("'.$data['redirect'].'")</script>';
   }
  ?>

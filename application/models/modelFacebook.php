@@ -1,6 +1,6 @@
 <?php
 
-class modelFacebook extends Model
+class modelfacebook extends Model
 {
 
 //Получаем логин линку

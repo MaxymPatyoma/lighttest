@@ -1,9 +1,9 @@
 <?php
 
-$dbhost = '127.0.0.1'; //Database Host 
+$dbhost = 'm0nex714.mysql.ukraine.com.ua'; //Database Host 
 
-$dbname = 'lighttest'; //Database Name
+$dbname = 'm0nex714_db'; //Database Name
 
-$dbusername = 'root'; //Database Username
+$dbusername = 'm0nex714_db'; //Database Username
 
-$dbpass = '123456'; //Database Password
+$dbpass = 'BdNJ26wf'; //Database Password

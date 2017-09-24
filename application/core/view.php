@@ -12,6 +12,6 @@ class View
 		}
 		
 		
-		include_once __DIR__.'/../views/'.$templateView;
+		include_once $_SERVER['DOCUMENT_ROOT'].'/application/views/'.$templateView;
 	}
 }
