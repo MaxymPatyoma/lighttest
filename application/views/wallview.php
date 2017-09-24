@@ -86,7 +86,7 @@
         </div>
       <!--  Edit button -->
         <?php if($message['user_fbid']==$_SESSION['fb_user']['fb_id']): ?>
-         <div class="col-md-3 col-md-offset-3">
+         <div class="col-md-3 col-md-offset-1">
             <form action="/wall" method="POST">
               <input type="hidden" name="editval" value=<?php echo '"'.$message['id'].':'.$message['user_id'].'"'; ?>>
               <input type="hidden" name="editmess" value=<?php echo '"'.$message['message'].'"'; ?>>
